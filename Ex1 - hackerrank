@@ -1,0 +1,52 @@
+/* Hidden stub code will pass a root argument to the function below. Complete the function to solve the challenge. Hint: you may want to write one or more helper functions.  
+
+The Node struct is defined as follows:
+	struct Node {
+		int data;
+		Node* left;
+		Node* right;
+	}
+*/
+	bool checkBST(Node* root)
+    {	
+        
+        // no sub-node means this is BST
+        if( (root->left == NULL) && (root->right == NULL)) return true;
+        
+        // if a node exists, I'll have to check if left sub-tree is a BST...
+        bool l = checkBST(root->left);
+        // and if right sub-tree is a BST
+        bool r = checkBST(root->right);
+        
+        // if at least one isnt BST, returns false
+        if( (l && r) != true ) return false;
+        
+        
+        // check if this tree is BST ----------------------------------------------
+        // get the max value from left sub-BST
+        int maxLV = maxValue(root->left);
+        // get the min value from right sub-BST
+        int minRV = minValue(root->right);
+        // if is sorted, returns true
+        if( (maxLV < root->data) && (root->data < minRV) ) return true;
+        // if not in this order, or equal values, return false
+        else return false;
+	}
+
+    int maxValue(Node* root)
+    {
+        // no sub-node means this is the max value
+        if(root->right == NULL) return root->data;
+        
+        // return max value from right sub-tree
+        return maxValue(root->right);
+    }
+
+    int minValue(Node* root)
+    {
+        // no sub-node means this is the min value
+        if(root->left == NULL) return root->data;
+        
+        // return min value from left sub-tree
+        return minValue(root->left);
+    }
