@@ -43,6 +43,7 @@ bool checkBST(Node* root)
 
 
 3	How can you improve your existing solution? If that is possible, what would your new solution's O() complexity be?
+
 It is possible to do the data comparison and obtain the minimum and maximum value at the same time, saving the use of other recursive function.
 
 The new complexity would be f(n) = O(2^n).
