@@ -2,4 +2,4 @@
 My repository
 
 
-<red> Meu read me </red>
+<font size="3" color="red">This is some text!</font>
