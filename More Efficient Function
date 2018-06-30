@@ -1,0 +1,104 @@
+struct tupla {
+		bool isBST;
+		int min;
+		int max;
+	};
+
+	bool checkBST(Node* root)
+    {	
+        
+        return checkBSTSimpler(root)->isBST;
+	}
+
+tupla* checkBSTSimpler(Node* root)
+    {
+        // initialize answer
+        tupla* temp = new tupla();
+        /// default
+        temp->isBST = false;
+    
+        // no sub-node means this is BST
+        if( (root->left == NULL) && (root->right == NULL))
+        {
+            // return true and max and min data are the node's value
+            tupla* temporary = new tupla();
+            temporary->min = root->data;
+            temporary->max = root->data;
+            temporary->isBST = true;
+            return temporary;
+        }
+        
+        tupla* l;
+        tupla* r;
+        // if a node exists, I'll have to check if left sub-tree is a BST...
+        if(root->left == NULL) l = NULL;
+        else l = checkBSTSimpler(root->left);
+        // and if right sub-tree is a BST
+        if(root->right == NULL) r = NULL;
+        else r = checkBSTSimpler(root->right);
+        
+        // if at least one isnt BST, returns false
+        if( (l != NULL) && !(l->isBST) ) return temp;
+        if( (r != NULL) && !(r->isBST) ) return temp;
+        
+        
+        // check if this tree is BST ----------------------------------------------
+    
+        // left sub-tree does not exist
+        if(l == NULL)
+        {
+            // get the min value from right sub-BST
+            int minRV = r->min;
+            // if is sorted, returns true
+            if(root->data < minRV)
+            {
+               // is BST
+               temp->isBST = true;
+            
+               // return the min value from left sub-tree, since does not exist, return itself
+               temp->min = root->data;
+               // return the max value from right sub-tree
+               temp->max = r->max;
+               return temp;
+            }
+        }
+    
+    // right sub-tree does not exist
+        if(r == NULL)
+        {
+            // get the max value from left sub-BST
+            int maxLV = l->max;
+            // if is sorted, returns true
+            if(maxLV < root->data)
+            {
+               // is BST
+               temp->isBST = true;
+            
+               // return the min value from left sub-tree
+               temp->min = l->min;
+               // return the max value from right sub-tree, since does not exist, return itself
+               temp->max = root->data;
+               return temp;
+            }
+        }
+    
+        // both sub-trees exist
+        // get the max value from left sub-BST
+        int maxLV = l->max;
+        // get the min value from right sub-BST
+        int minRV = r->min;
+        // if is sorted, returns true
+        if( (maxLV < root->data) && (root->data < minRV) )
+        {
+            // is BST
+            temp->isBST = true;
+            
+            // return the min value from left sub-tree
+            temp->min = l->min;
+            // return the max value from right sub-tree
+            temp->max = r->max;
+            return temp;
+        }
+        // if not in this order, or equal values, return false
+        else return temp;
+	}
