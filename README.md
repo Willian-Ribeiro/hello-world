@@ -46,12 +46,15 @@ bool checkBST(Node* root)
 
 It is possible to do the data comparison and obtain the minimum and maximum value at the same time, saving the use of other recursive function.
 
-The new complexity would be f(n) = O(2^n).
+Two attempts were made in order to reduce the complexity, check "More Efficient Function" and "better yet function".
+
+The function in "More Efficient Function" is a O(2^n).
 
 
 
 4	What is the complexity class  (P, NP, NP-complete, etc) of this problem?
 
+	By the functions found in the previous exercise, the problem is of complexity class EXPTIME.
 
 
 
