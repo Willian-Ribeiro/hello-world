@@ -54,7 +54,7 @@ The function in "More Efficient Function" is a O(2^n).
 
 4	What is the complexity class  (P, NP, NP-complete, etc) of this problem?
 
-	By the functions found in the previous exercise, the problem is of complexity class EXPTIME.
+	By the functions found in the previous exercise, the problem is of complexity class P.
 
 
 
