@@ -1,0 +1,16 @@
+bool checkBST(Node* root)
+    {	
+        return checkBST1(root, -1, 10001);
+	}
+
+bool checkBST1(Node* root, int min, int max)
+    {	
+        // no sub-node means this is BST
+        if(root == NULL) return true;
+        
+        // verify if it does not exceed the min and max boundaries
+        if(root->data < min || root->data > max) return false;
+        
+        // check the left and right sub-trees, sub-node must have different key then the father
+        return checkBST1(root->left, min, root->data-1) && checkBST1(root->right, root->data+1, max);
+	}
