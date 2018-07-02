@@ -78,9 +78,10 @@ The function in "better yet function" is also O(n), but should be slightly bette
 
 5	Provide us a diagram containing the state machine automata of your algorithm;
 
-Please check "" file.
+Please check "SMA" file.
 
 -----------------------------------------------#~#~#~#~#-----------------------------------------------------------------------
 
 6	Bonus point: Provide us the abstract syntax tree (AST) representation of your algorithm;
 
+Please check "AST" file.
