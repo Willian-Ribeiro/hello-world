@@ -6,11 +6,22 @@
 
 The following recursive alghorithm can be analyzed as a binary tree, where for each time the recursive function is called, 2 calls for the same recursive function will be made (exception for the case where the node is a leaf).
 
-To analyse its complexity, let's suppose a tree of depth 3. (see image "2 recursive calls"). In the worst case, all nodes until depth 3 will have sub-nodes, what causes the function to call itself twice. Therefore, the number of calls of the function will be equals to the number of branches in the tree. In this case, 15 branches where created. By induction, one can notice that the formula is given by 2^n-1, where n is the depth of the tree.
+To analyse its complexity, let's suppose a tree of depth 3. (see image "2 recursive calls"). In the worst case, all nodes until depth 3 will have sub-nodes, what causes the function to call itself twice (once for the left and once for the right sub-node).
 
-Since this function is not only calling itself as a recursive function, but also maxValue and minValue, we should supose that for each time the recursive function checkBST is called, maxValue and minValue are called n times (see image "auxiliary recursive functions").
+Therefore, the number of calls of the function will be equals to the number of branches in the tree. In this case, 15 branches where created. By induction, one can notice that the formula is given by 2^(x+1)-1, where x is the depth of the tree. It is easy to see that the number of branches is exactly same as the amount of input nodes. Thus, for each node, the function is called once, resulting in a function f(n) = n + c.
 
-Therefore, the function that best describes the "cost" of checkBST is f(n) = c1*n*(2^n) + c2. In big O: f(n) = O(n*(2^n)).
+Since this function is not only calling itself, but also maxValue and minValue. The cost of calling maxValue and minValue for each node in the tree is 2*(log2(nodes+1)-2). Cost of minValue and maxValues, see image "auxiliary recursive functions", is given below:
+
+nodes  = 2^(depth+1)-1
+nodes + 1 = 2 ^ (altura + 1)
+log2(nodes+1) = depth + 1
+depth = log2(depth+1) - 1
+
+function calls = depth - 1 = log2(nodes+1) - 2
+
+
+
+Therefore, the function that best describes the "cost" of checkBST is f(n) = c1*(n+c2)*(c3*log2(n+1)+c4) + c5. In big O: f(n) = O(n*log2(n)).
 
 
 
@@ -18,27 +29,27 @@ bool checkBST(Node* root)
     {	
         
         if( (root->left == NULL) && (root->right == NULL)) return true; ~~~~~> c
-        bool l = checkBST(root->left); ~~~~~> 2^n-1 + c
-        bool r = checkBST(root->right); ~~~~~> 2^n-1 + c
+        bool l = checkBST(root->left); ~~~~~> n + c
+        bool r = checkBST(root->right); ~~~~~> n + c
         
         if( (l && r) != true ) return false; ~~~~~> c
         
-        int maxLV = maxValue(root->left); ~~~~~> n + c
-        int minRV = minValue(root->right); ~~~~~> n + c
+        int maxLV = maxValue(root->left); ~~~~~> log2(n) + c
+        int minRV = minValue(root->right); ~~~~~> log2(n) + c
         if( (maxLV < root->data) && (root->data < minRV) ) return true; ~~~~~> c
         else return false; ~~~~~> c
 	}
 
-    int maxValue(Node* root) ~~~~~> n + c
+    int maxValue(Node* root) ~~~~~> log2(n) + c
     {
         if(root->right == NULL) return root->data;  ~~~~~> c
-        return maxValue(root->right); ~~~~~> n
+        return maxValue(root->right); ~~~~~> log2(n)
     }
 
-    int minValue(Node* root) ~~~~~> n + c
+    int minValue(Node* root) ~~~~~> log2(n) + c
     {
         if(root->left == NULL) return root->data; ~~~~~> c
-        return minValue(root->left); ~~~~~> n
+        return minValue(root->left); ~~~~~> log2(n)
     }
 
 
@@ -48,7 +59,9 @@ It is possible to do the data comparison and obtain the minimum and maximum valu
 
 Two attempts were made in order to reduce the complexity, check "More Efficient Function" and "better yet function".
 
-The function in "More Efficient Function" is a O(2^n).
+The function in "More Efficient Function" is a O(n), because the recursive functions minValue and maxValue used in the exercise above are not needed.
+
+The function in "better yet function" is also O(n), but should be slightly better than the function in "More Efficient Function" because the code is more consize.
 
 
 
