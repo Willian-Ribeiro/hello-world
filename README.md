@@ -2,6 +2,8 @@
 
 1	Upload your code, diagrams and any other relevant materials to a Git repository and send me its URL, there are many free Git options you can explore;
 
+Pelase check "1st Solution" file.
+
 -----------------------------------------------#~#~#~#~#-----------------------------------------------------------------------
 
 2	What is the O() complexity of your solution?
@@ -76,7 +78,7 @@ The function in "better yet function" is also O(n), but should be slightly bette
 
 5	Provide us a diagram containing the state machine automata of your algorithm;
 
-
+Please check "" file.
 
 -----------------------------------------------#~#~#~#~#-----------------------------------------------------------------------
 
