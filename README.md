@@ -1,5 +1,7 @@
 # Questions & Answers
 
+Solving the problem at: https://www.hackerrank.com/challenges/is-binary-search-tree/problem
+
 1	Upload your code, diagrams and any other relevant materials to a Git repository and send me its URL, there are many free Git options you can explore;
 
 Pelase check "1st Solution" file.
